@@ -1,12 +1,12 @@
 //
-//  StudentLocation.swift
+//  StudentInformation.swift
 //  On The Map
 //
 //  Created by Dane Miller on 10/29/17.
 //  Copyright © 2017 Dane Miller. All rights reserved.
 //
 
-struct StudentLocation {
+struct StudentInformation {
     
     let objectId : String
     let uniqueKey : String
@@ -22,9 +22,9 @@ struct StudentLocation {
     
 }
 
-extension StudentLocation : Equatable {}
+extension StudentInformation : Equatable {}
 
-func ==(lhs: StudentLocation, rhs: StudentLocation) -> Bool {
+func ==(lhs: StudentInformation, rhs: StudentInformation) -> Bool {
     return lhs.objectId == rhs.objectId
 }
 
