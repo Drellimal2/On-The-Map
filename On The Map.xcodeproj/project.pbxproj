@@ -20,6 +20,8 @@
 		354C5ADF1FA6DAF0002B17B4 /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5ADE1FA6DAF0002B17B4 /* UdacityClient.swift */; };
 		354C5AE11FA6DB0F002B17B4 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AE01FA6DB0F002B17B4 /* UdacityConstants.swift */; };
 		354C5AE31FA6E50E002B17B4 /* UdacityConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AE21FA6E50E002B17B4 /* UdacityConv.swift */; };
+		354C5AE51FA6EEF8002B17B4 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AE41FA6EEF8002B17B4 /* Utils.swift */; };
+		354C5AE81FA70270002B17B4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 354C5AE71FA70270002B17B4 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		354C5ADE1FA6DAF0002B17B4 /* UdacityClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		354C5AE01FA6DB0F002B17B4 /* UdacityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		354C5AE21FA6E50E002B17B4 /* UdacityConv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityConv.swift; sourceTree = "<group>"; };
+		354C5AE41FA6EEF8002B17B4 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		354C5AE71FA70270002B17B4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354C5AE81FA70270002B17B4 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +61,7 @@
 			children = (
 				354C5ABB1FA6ACD1002B17B4 /* On The Map */,
 				354C5ABA1FA6ACD1002B17B4 /* Products */,
+				354C5AE61FA70270002B17B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +111,7 @@
 				354C5AD31FA6AD32002B17B4 /* Facebook */,
 				354C5AD21FA6AD2B002B17B4 /* Parse */,
 				354C5AD11FA6AD25002B17B4 /* Udacity */,
+				354C5AE41FA6EEF8002B17B4 /* Utils.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -134,6 +141,14 @@
 			children = (
 			);
 			path = Facebook;
+			sourceTree = "<group>";
+		};
+		354C5AE61FA70270002B17B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				354C5AE71FA70270002B17B4 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +184,11 @@
 					354C5AB81FA6ACD1002B17B4 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -215,6 +235,7 @@
 				354C5ABF1FA6ACD1002B17B4 /* ViewController.swift in Sources */,
 				354C5AE31FA6E50E002B17B4 /* UdacityConv.swift in Sources */,
 				354C5AE11FA6DB0F002B17B4 /* UdacityConstants.swift in Sources */,
+				354C5AE51FA6EEF8002B17B4 /* Utils.swift in Sources */,
 				354C5AD91FA6D41A002B17B4 /* StudentInformation.swift in Sources */,
 				354C5ABD1FA6ACD1002B17B4 /* AppDelegate.swift in Sources */,
 				354C5ADD1FA6D517002B17B4 /* ParseConstants.swift in Sources */,
@@ -357,6 +378,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JVR64PHHU5;
 				INFOPLIST_FILE = "On The Map/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "drellimal2.github.io.On-The-Map";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -372,6 +394,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = JVR64PHHU5;
 				INFOPLIST_FILE = "On The Map/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "drellimal2.github.io.On-The-Map";
 				PRODUCT_NAME = "$(TARGET_NAME)";

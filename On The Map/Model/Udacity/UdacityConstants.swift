@@ -15,9 +15,13 @@ extension UdacityClient {
         
         
         // Since all the methods reference this url
-        static let BaseURL = "https://www.udacity.com/api/"
+        static let BaseURL = "https://www.udacity.com/api"
         
-        static let SessionMethod = "session"
+        static let SessionMethod = "/session"
+        
+        static let ApiScheme = "https"
+        static let ApiHost = "www.udacity.com"
+        static let ApiPath = "/api"
         
     }
     
