@@ -14,6 +14,9 @@
 		354C5AC71FA6ACD1002B17B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354C5AC51FA6ACD1002B17B4 /* LaunchScreen.storyboard */; };
 		354C5AD51FA6AD5E002B17B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AD41FA6AD5E002B17B4 /* LoginViewController.swift */; };
 		354C5AD71FA6C87D002B17B4 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AD61FA6C87D002B17B4 /* GCDBlackBox.swift */; };
+		354C5AD91FA6D41A002B17B4 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AD81FA6D41A002B17B4 /* StudentLocation.swift */; };
+		354C5ADB1FA6D504002B17B4 /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5ADA1FA6D504002B17B4 /* ParseClient.swift */; };
+		354C5ADD1FA6D517002B17B4 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5ADC1FA6D517002B17B4 /* ParseConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		354C5AC81FA6ACD1002B17B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		354C5AD41FA6AD5E002B17B4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		354C5AD61FA6C87D002B17B4 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		354C5AD81FA6D41A002B17B4 /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		354C5ADA1FA6D504002B17B4 /* ParseClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
+		354C5ADC1FA6D517002B17B4 /* ParseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,9 @@
 		354C5AD21FA6AD2B002B17B4 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
+				354C5AD81FA6D41A002B17B4 /* StudentLocation.swift */,
+				354C5ADA1FA6D504002B17B4 /* ParseClient.swift */,
+				354C5ADC1FA6D517002B17B4 /* ParseConstants.swift */,
 			);
 			path = Parse;
 			sourceTree = "<group>";
@@ -190,10 +199,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354C5ADB1FA6D504002B17B4 /* ParseClient.swift in Sources */,
 				354C5AD71FA6C87D002B17B4 /* GCDBlackBox.swift in Sources */,
 				354C5AD51FA6AD5E002B17B4 /* LoginViewController.swift in Sources */,
 				354C5ABF1FA6ACD1002B17B4 /* ViewController.swift in Sources */,
+				354C5AD91FA6D41A002B17B4 /* StudentLocation.swift in Sources */,
 				354C5ABD1FA6ACD1002B17B4 /* AppDelegate.swift in Sources */,
+				354C5ADD1FA6D517002B17B4 /* ParseConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
