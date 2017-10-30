@@ -12,6 +12,8 @@
 		354C5AC21FA6ACD1002B17B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354C5AC01FA6ACD1002B17B4 /* Main.storyboard */; };
 		354C5AC41FA6ACD1002B17B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354C5AC31FA6ACD1002B17B4 /* Assets.xcassets */; };
 		354C5AC71FA6ACD1002B17B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354C5AC51FA6ACD1002B17B4 /* LaunchScreen.storyboard */; };
+		354C5AD51FA6AD5E002B17B4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AD41FA6AD5E002B17B4 /* LoginViewController.swift */; };
+		354C5AD71FA6C87D002B17B4 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AD61FA6C87D002B17B4 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		354C5AC31FA6ACD1002B17B4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		354C5AC61FA6ACD1002B17B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		354C5AC81FA6ACD1002B17B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		354C5AD41FA6AD5E002B17B4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		354C5AD61FA6C87D002B17B4 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,64 @@
 		354C5ABB1FA6ACD1002B17B4 /* On The Map */ = {
 			isa = PBXGroup;
 			children = (
+				354C5AD01FA6ACEC002B17B4 /* Model */,
+				354C5ACF1FA6ACE9002B17B4 /* View */,
+				354C5ACE1FA6ACE3002B17B4 /* Controller */,
 				354C5ABC1FA6ACD1002B17B4 /* AppDelegate.swift */,
 				354C5ABE1FA6ACD1002B17B4 /* ViewController.swift */,
 				354C5AC01FA6ACD1002B17B4 /* Main.storyboard */,
 				354C5AC31FA6ACD1002B17B4 /* Assets.xcassets */,
 				354C5AC51FA6ACD1002B17B4 /* LaunchScreen.storyboard */,
 				354C5AC81FA6ACD1002B17B4 /* Info.plist */,
+				354C5AD61FA6C87D002B17B4 /* GCDBlackBox.swift */,
 			);
 			path = "On The Map";
+			sourceTree = "<group>";
+		};
+		354C5ACE1FA6ACE3002B17B4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				354C5AD41FA6AD5E002B17B4 /* LoginViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		354C5ACF1FA6ACE9002B17B4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		354C5AD01FA6ACEC002B17B4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				354C5AD31FA6AD32002B17B4 /* Facebook */,
+				354C5AD21FA6AD2B002B17B4 /* Parse */,
+				354C5AD11FA6AD25002B17B4 /* Udacity */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		354C5AD11FA6AD25002B17B4 /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Udacity;
+			sourceTree = "<group>";
+		};
+		354C5AD21FA6AD2B002B17B4 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Parse;
+			sourceTree = "<group>";
+		};
+		354C5AD31FA6AD32002B17B4 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Facebook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +190,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				354C5AD71FA6C87D002B17B4 /* GCDBlackBox.swift in Sources */,
+				354C5AD51FA6AD5E002B17B4 /* LoginViewController.swift in Sources */,
 				354C5ABF1FA6ACD1002B17B4 /* ViewController.swift in Sources */,
 				354C5ABD1FA6ACD1002B17B4 /* AppDelegate.swift in Sources */,
 			);
