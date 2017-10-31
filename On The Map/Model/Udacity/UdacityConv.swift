@@ -74,7 +74,7 @@ extension UdacityClient {
 
             
             
-            print(UdacityClient.sharedInstance().sessionID)
+            print(UdacityClient.sharedInstance().sessionID!)
   
         })
         

@@ -17,6 +17,12 @@ extension ParseClient{
         // Since all the methods reference this url
         static let BaseURL = "https://parse.udacity.com/parse/classes/StudentLocation"
         
+        static let ApiScheme = "https"
+        static let ApiHost = "parse.udacity.com"
+        static let ApiPath = "/parse/classes/StudentLocation"
+        
+     
+        
     }
     
     
@@ -49,6 +55,11 @@ extension ParseClient{
         static let UniqueKey = "uniqueKey"
         static let MapString = "mapString"
         static let MediaURL = "mediaURL"
+        static let CreatedAt = "createdAt"
+        static let UpdatedAt = "updatedAt"
+        
+        static let Limit = "limit"
+        static let Order = "order"
         
         
     }

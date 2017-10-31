@@ -12,19 +12,25 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var errorTextView: UITextView!
+    @IBOutlet weak var loginButton: UIButton!
     
     var usernameText  = ""
     var passwordText = ""
     
     @IBAction func loginUdacity(_ sender: Any) {
         guard ( emailTextField.text!.isEmpty || emailTextField.text!.isEmpty )  else {
-//            setUIEnabled(false)
+            setUIEnabled(false)
             usernameText = emailTextField.text!
             passwordText = passwordTextField.text!
             print("HI")
             UdacityClient.sharedInstance().loginPostSession(username: usernameText, password: passwordText)
+            setUIEnabled(true)
+            print("a")
+            print(UdacityClient.sharedInstance().sessionID!)
             return
         }
+        errorTextView.text = "Email and Password Fields cannot be empty"
         
     }
     
@@ -52,16 +58,14 @@ extension LoginViewController {
     func setUIEnabled(_ enabled: Bool) {
         emailTextField.isEnabled = enabled
         passwordTextField.isEnabled = enabled
-//        loginButton.isEnabled = enabled
-//        debugTextLabel.text = ""
-//        debugTextLabel.isEnabled = enabled
+        loginButton.isEnabled = enabled
+        errorTextView.text = ""
 //
-        // adjust login button alpha
-//        if enabled {
-//            loginButton.alpha = 1.0
-//        } else {
-//            loginButton.alpha = 0.5
-//        }
+        if enabled {
+            loginButton.alpha = 1.0
+        } else {
+            loginButton.alpha = 0.5
+        }
     }
     
 }
