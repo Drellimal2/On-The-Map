@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		352584D91FA9FF15003A0A88 /* UIViewContr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352584D81FA9FF15003A0A88 /* UIViewContr.swift */; };
 		354C5ABD1FA6ACD1002B17B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5ABC1FA6ACD1002B17B4 /* AppDelegate.swift */; };
 		354C5ABF1FA6ACD1002B17B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5ABE1FA6ACD1002B17B4 /* ViewController.swift */; };
 		354C5AC21FA6ACD1002B17B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354C5AC01FA6ACD1002B17B4 /* Main.storyboard */; };
@@ -27,9 +28,11 @@
 		354C5AEE1FA775E4002B17B4 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AED1FA775E4002B17B4 /* ListViewController.swift */; };
 		354C5AF01FA7760F002B17B4 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AEF1FA7760F002B17B4 /* TabBarViewController.swift */; };
 		354C5AF21FA7E7A0002B17B4 /* ParseConv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5AF11FA7E7A0002B17B4 /* ParseConv.swift */; };
+		35E3B11C1FA81D57002AF3D4 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E3B11B1FA81D57002AF3D4 /* NewLocationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		352584D81FA9FF15003A0A88 /* UIViewContr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewContr.swift; sourceTree = "<group>"; };
 		354C5AB91FA6ACD1002B17B4 /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		354C5ABC1FA6ACD1002B17B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		354C5ABE1FA6ACD1002B17B4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		354C5AED1FA775E4002B17B4 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		354C5AEF1FA7760F002B17B4 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		354C5AF11FA7E7A0002B17B4 /* ParseConv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConv.swift; sourceTree = "<group>"; };
+		35E3B11B1FA81D57002AF3D4 /* NewLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				354C5AEB1FA775BF002B17B4 /* MapsViewController.swift */,
 				354C5AED1FA775E4002B17B4 /* ListViewController.swift */,
 				354C5AEF1FA7760F002B17B4 /* TabBarViewController.swift */,
+				35E3B11B1FA81D57002AF3D4 /* NewLocationViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				354C5AE91FA77504002B17B4 /* StudentTableViewCell.swift */,
+				352584D81FA9FF15003A0A88 /* UIViewContr.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 				354C5ADF1FA6DAF0002B17B4 /* UdacityClient.swift in Sources */,
 				354C5ADB1FA6D504002B17B4 /* ParseClient.swift in Sources */,
 				354C5AD71FA6C87D002B17B4 /* GCDBlackBox.swift in Sources */,
+				352584D91FA9FF15003A0A88 /* UIViewContr.swift in Sources */,
 				354C5AD51FA6AD5E002B17B4 /* LoginViewController.swift in Sources */,
 				354C5ABF1FA6ACD1002B17B4 /* ViewController.swift in Sources */,
 				354C5AEE1FA775E4002B17B4 /* ListViewController.swift in Sources */,
@@ -251,6 +258,7 @@
 				354C5ABD1FA6ACD1002B17B4 /* AppDelegate.swift in Sources */,
 				354C5ADD1FA6D517002B17B4 /* ParseConstants.swift in Sources */,
 				354C5AEA1FA77504002B17B4 /* StudentTableViewCell.swift in Sources */,
+				35E3B11C1FA81D57002AF3D4 /* NewLocationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

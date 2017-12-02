@@ -20,7 +20,7 @@ class ParseClient : NSObject {
     }
     
     
-    func taskMethod(_ url: String, httpMethod : String = "GET", method : String, httpHeaders : [String : String], httpBody : String = "", completionHandler : @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func taskMethod(_ url: String, httpMethod : String = "GET", method : String = "", httpHeaders : [String : String], httpBody : String = "", completionHandler : @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
         
         let request = NSMutableURLRequest(url: URL(string: url + method)!)
         request.httpMethod = httpMethod
@@ -42,7 +42,7 @@ class ParseClient : NSObject {
                 sendError("There was an error with your request: \(error!)")
                 return
             }
-            print(String(data: data!, encoding: .utf8)!)
+            // print(String(data: data!, encoding: .utf8)!)
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 sendError("Not 200")
@@ -77,6 +77,7 @@ class ParseClient : NSObject {
         
     }
     
+
     func parseURLFromParameters(_ parameters: [String:Any], withPathExtension: String? = nil) -> String {
         
         var components = URLComponents()
@@ -91,6 +92,13 @@ class ParseClient : NSObject {
         }
         
         return components.url!.absoluteString
+    }
+    
+    class func sharedInstance() -> ParseClient {
+        struct Singleton {
+            static var sharedInstance = ParseClient()
+        }
+        return Singleton.sharedInstance
     }
 
     

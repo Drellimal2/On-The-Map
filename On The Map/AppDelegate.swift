@@ -12,6 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var session_id : String?
+    var user_id : String?
+    var first_name : String?
+    var last_name : String?
     var students : [StudentInformation] = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -24,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 "latitude" : 28.1461248,
                 "longitude" : -82.75676799999999,
                 "mapString" : "Tarpon Springs, FL",
-                "mediaURL" : "www.linkedin.com/in/jessicauelmen/en",
+                "mediaURL" : "https://www.linkedin.com/in/jessicauelmen/en",
                 "objectId" : "kj18GEaWD8",
                 "uniqueKey" : "872458750",
                 "updatedAt" : "2015-03-09T22:07:09.593Z"
@@ -35,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 "latitude" : 35.1740471,
                 "longitude" : -79.3922539,
                 "mapString" : "Southern Pines, NC",
-                "mediaURL" : "http://www.linkedin.com/pub/gabrielle-miller-messner/11/557/60/en",
+                "mediaURL" : "https://www.linkedin.com/in/gabrielle-miller-messner/11/557/60/en",
                 "objectId" : "8ZEuHF5uX8",
                 "uniqueKey" : "2256298598",
                 "updatedAt" : "2015-03-11T03:23:49.582Z"

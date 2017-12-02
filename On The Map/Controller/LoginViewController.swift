@@ -15,6 +15,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorTextView: UITextView!
     @IBOutlet weak var loginButton: UIButton!
     
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+
+    
+    let UdacityCli = UdacityClient.sharedInstance()
     var usernameText  = ""
     var passwordText = ""
     
@@ -23,11 +27,28 @@ class LoginViewController: UIViewController {
             setUIEnabled(false)
             usernameText = emailTextField.text!
             passwordText = passwordTextField.text!
-            print("HI")
-            UdacityClient.sharedInstance().loginPostSession(username: usernameText, password: passwordText)
-            setUIEnabled(true)
-            print("a")
-            print(UdacityClient.sharedInstance().sessionID!)
+            UdacityCli.loginPostSession(username: usernameText, password: passwordText,  controllerCompletionHandler: { data, error in
+                performUIUpdatesOnMain {
+                    print("hi")
+                    if let error = error {
+                        print("errr 3")
+                        print(error)
+                        
+                        self.showError(error)
+                    } else {
+                        let ndata = data as! [String : Any]
+                        self.delegate.session_id = ndata[Consts.session_id] as? String
+                        self.delegate.user_id = ndata[Consts.user_id] as? String
+
+                        print(data!)
+                        print("err")
+                        print(error ?? "No Error")
+                        self.completeLogin()
+                    }
+                    self.setUIEnabled(true)
+
+                }
+            })
             return
         }
         errorTextView.text = "Email and Password Fields cannot be empty"
@@ -41,15 +62,31 @@ class LoginViewController: UIViewController {
     }
 
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func completeLogin(){
+        
+        errorTextView.text = ""
+        let controller = storyboard!.instantiateViewController(withIdentifier: "MapsNavigationController") as! UINavigationController
+        updateStudents()
+        present(controller, animated: true, completion: nil)
+        
+        
     }
-    */
+    
+    func updateStudents(){
+        let parseCli = ParseClient.sharedInstance()
+        parseCli.getLocations { (data, error) in
+            if let data = data {
+                self.delegate.students = data
+            } else {
+                alert(title: "Oops", message: error ?? "Something went wrong", controller: self)
+            }
+        }
+    }
+    
+    @IBAction func signUp(_ sender : Any) {
+        let app = UIApplication.shared
+        app.open(NSURL(string: Consts.udacity_sign_up_url)! as URL)
+    }
 
 }
 
@@ -59,13 +96,21 @@ extension LoginViewController {
         emailTextField.isEnabled = enabled
         passwordTextField.isEnabled = enabled
         loginButton.isEnabled = enabled
-        errorTextView.text = ""
 //
         if enabled {
             loginButton.alpha = 1.0
         } else {
             loginButton.alpha = 0.5
+            errorTextView.text = ""
+
         }
     }
+    
+    func showError(_ errorMsg: String?) {
+        if let errorMsg = errorMsg {
+            errorTextView.text = errorMsg
+        }
+    }
+    
     
 }

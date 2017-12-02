@@ -18,7 +18,7 @@ extension UdacityClient {
         static let BaseURL = "https://www.udacity.com/api"
         
         static let SessionMethod = "/session"
-        
+        static let UserMethod = "/users/"
         static let ApiScheme = "https"
         static let ApiHost = "www.udacity.com"
         static let ApiPath = "/api"

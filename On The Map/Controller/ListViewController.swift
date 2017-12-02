@@ -30,7 +30,8 @@ class ListViewController: UIViewController {
         studentTableView.reloadData()
     }
     func refresh(){
-        
+        self.updateData()
+
     }
 
     

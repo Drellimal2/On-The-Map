@@ -13,30 +13,25 @@ class MapsViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    let parseCli = ParseClient.sharedInstance()
     
     let delegate = UIApplication.shared.delegate as! AppDelegate
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addPins()
         mapView.delegate = self
-        // Do any additional setup after loading the view.
+        addPins()
     }
     
-    func update(){
-//        addPins()
-        //TODO
-    }
     
     func refresh()
     {
-        
-        print("map refresh")
+        addPins()
     }
     
     func addPins(){
         var annotations = [MKPointAnnotation]()
-
+        
         for student in delegate.students {
             
             // The lat and long are used to create a CLLocationCoordinates2D instance.
@@ -53,8 +48,10 @@ class MapsViewController: UIViewController {
             annotations.append(annotation)
             
         }
-        
+        let allAnnotations = self.mapView.annotations
+        self.mapView.removeAnnotations(allAnnotations)
         self.mapView.addAnnotations(annotations)
+        
 
     }
 
@@ -74,7 +71,7 @@ extension MapsViewController : MKMapViewDelegate {
         if pinView == nil {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
-            pinView!.pinTintColor = .blue
+            pinView!.pinTintColor = .cyan
             pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         else {
