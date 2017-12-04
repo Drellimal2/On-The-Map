@@ -29,20 +29,18 @@ class LoginViewController: UIViewController {
             passwordText = passwordTextField.text!
             UdacityCli.loginPostSession(username: usernameText, password: passwordText,  controllerCompletionHandler: { data, error in
                 performUIUpdatesOnMain {
-                    print("hi")
                     if let error = error {
-                        print("errr 3")
                         print(error)
-                        
                         self.showError(error)
                     } else {
                         let ndata = data as! [String : Any]
+                        print("DATA")
+                        print(ndata)
                         self.delegate.session_id = ndata[Consts.session_id] as? String
                         self.delegate.user_id = ndata[Consts.user_id] as? String
-
-                        print(data!)
-                        print("err")
-                        print(error ?? "No Error")
+                        self.delegate.first_name = ndata[Consts.first_name] as? String
+                        self.delegate.last_name = ndata[Consts.last_name] as? String
+                        self.delegate.studentPostObbjectId = ndata[Consts.object_id] as? String
                         self.completeLogin()
                     }
                     self.setUIEnabled(true)
@@ -58,7 +56,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
 
     
@@ -66,7 +63,8 @@ class LoginViewController: UIViewController {
         
         errorTextView.text = ""
         let controller = storyboard!.instantiateViewController(withIdentifier: "MapsNavigationController") as! UINavigationController
-        updateStudents()
+        //updateStudents()
+        
         present(controller, animated: true, completion: nil)
         
         
@@ -96,7 +94,6 @@ extension LoginViewController {
         emailTextField.isEnabled = enabled
         passwordTextField.isEnabled = enabled
         loginButton.isEnabled = enabled
-//
         if enabled {
             loginButton.alpha = 1.0
         } else {

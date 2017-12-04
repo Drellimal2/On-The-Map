@@ -17,7 +17,11 @@ func dictionaryToJSONString(_ dictionary : [String : AnyObject]) -> String{
         if value is [String : AnyObject]{
             res += dictionaryToJSONString(value as! [String : AnyObject])
         } else {
-            res += "\"\(value as! String)\""
+            if let val = value as? String{
+                res += "\"\(val as! String)\""
+            } else {
+                res += String(describing: value)
+            }
         }
         
         if (dictionary.count > 1 && c != dictionary.count-1 ){
@@ -33,9 +37,15 @@ func dictionaryToJSONString(_ dictionary : [String : AnyObject]) -> String{
     
 }
 
-func alert(title : String, message : String, controller : UIViewController){
+func alert(title : String, message : String, controller : UIViewController, actions : [UIAlertAction] = []){
     let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    if actions.count == 0{
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+    } else {
+        for action in actions{
+            alert.addAction(action)
+        }
+    }
     controller.present(alert, animated: true, completion: nil)
 }
 
@@ -43,6 +53,10 @@ struct Consts {
     
     static let session_id = "session_id"
     static let user_id = "user_id"
+    static let first_name = "first_name"
+    static let last_name = "last_name"
+    static let object_id = "objectId"
+
     
     static let grey_color = UIColor(red: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 0.5)
     

@@ -17,7 +17,10 @@ class NewLocationViewController: UIViewController {
     @IBOutlet weak var linkTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var submitBtn: UIButton!
+    
     var aspectRatio : Double = 1.0
+    let delegate = UIApplication.shared.delegate as! AppDelegate
+    let parseCli = ParseClient.sharedInstance()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +28,40 @@ class NewLocationViewController: UIViewController {
         locationTextField.delegate = self
         linkTextField.delegate = self
         setUIEnabled(true)
-        checkSubmit()
     }
+    
+    @IBAction func submitLocation(_ sender: Any) {
+        setUIEnabled(false)
+        var update = false
+        var objectId : String = ""
+        if let _ = delegate.studentPostObbjectId {
+            update = true
+            objectId = delegate.studentPostObbjectId!
+        }
+        parseCli.addLocation(body: getDetails(), update:update,objectid: objectId, controllerCompletionHandler: {
+            data,error in
+            performUIUpdatesOnMain {
+                self.setUIEnabled(true)
 
+                if let error = error {
+                    self.showError(errorString: error)
+                    return
+                }
+                 else {
+                    if !update{
+                        self.delegate.studentPostObbjectId = ((data as! [String:AnyObject])[ParseClient.JSONResponseKeys.ObjectID] as! String)
+                    }
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+                
+            }
+            
+            
+        })
+        
+        print(getDetails())
+    }
+    
     @IBAction func locate(_ sender: Any){
         if (locationTextField.text?.isEmpty)! {
             alert(title: "Could Not Locate", message: "Location text field cannot be blank", controller: self )
@@ -90,16 +124,39 @@ class NewLocationViewController: UIViewController {
 
 extension NewLocationViewController {
     
+    func showError(errorString : String){
+        alert(title: "Could not post location.", message: errorString, controller: self)
+    }
+    
+    
+    func getDetails() -> [String:AnyObject]{
+        
+        let data = [
+            ParseClient.JSONParamKeys.FirstName : delegate.first_name as AnyObject,
+            ParseClient.JSONParamKeys.LastName : delegate.last_name as AnyObject,
+            ParseClient.JSONParamKeys.MediaURL : linkTextField.text as AnyObject,
+            ParseClient.JSONParamKeys.UniqueKey : delegate.user_id as AnyObject,
+            ParseClient.JSONParamKeys.MapString : locationTextField.text as AnyObject,
+            ParseClient.JSONParamKeys.Lat : mapView.annotations[0].coordinate.latitude as AnyObject,
+            ParseClient.JSONParamKeys.Lng : mapView.annotations[0].coordinate.longitude as AnyObject
+        
+        ]
+        
+        return data
+        
+        
+    }
+    
     func setUIEnabled(_ enabled: Bool) {
         locateButton.isEnabled = enabled
         locationTextField.isEnabled = enabled
         linkTextField.isEnabled = enabled
         submitBtn.isEnabled = enabled
-        //
-        
         
         if enabled {
             locateButton.alpha = 1.0
+            locationTextField.alpha = 1.0
+            linkTextField.alpha = 1.0
             if ((locationTextField.text != nil || mapView.annotations.count > 0) && linkTextField.text != nil){
                 submitBtn.isEnabled = true
                 submitBtn.alpha = 1.0
@@ -113,6 +170,8 @@ extension NewLocationViewController {
         } else {
             locateButton.alpha = 0.5
             submitBtn.alpha = 0.5
+            locationTextField.alpha = 0.5
+            linkTextField.alpha = 0.5
 
         }
     }
@@ -128,9 +187,7 @@ extension NewLocationViewController {
         submitBtn.isEnabled = true
         submitBtn.alpha = 1
         submitBtn.titleLabel?.textColor = Consts.enabled_blue
-
-        
-        
+   
     }
 }
 
@@ -148,6 +205,19 @@ extension NewLocationViewController : UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         self.checkSubmit()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        // Try to find next responder
+        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        // Do not add a line break
+        return false
     }
     
     

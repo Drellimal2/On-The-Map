@@ -38,7 +38,7 @@ extension UdacityClient {
             }
             
             guard let ndata = data else {
-                controllerCompletionHandler(nil, "Oops looks like we asked for data but didnt get any. Such is life sometimes just have to try again." )
+                controllerCompletionHandler(nil, "Oops looks like we asked for a session id but didnt get any. Such is life sometimes just have to try again." )
                 return
             }
             
@@ -47,7 +47,7 @@ extension UdacityClient {
                 parsedResult = try JSONSerialization.jsonObject(with: ndata as! Data, options: .allowFragments) as AnyObject
                 
             } catch {
-                print("Could not parse Json")
+                print("Could not parse session Json")
                 controllerCompletionHandler(nil, "Could not parse Json" )
 
                 return
@@ -89,20 +89,14 @@ extension UdacityClient {
                 Consts.user_id : account_key
             
             ]
-            controllerCompletionHandler(ddata as AnyObject, nil)
+            //controllerCompletionHandler(ddata as AnyObject, nil)
+            self.getUserDetails(userID: account_key, olddata: ddata, controllerCompletionHandler: controllerCompletionHandler)
             
-//            print(self.sessionID!)
   
         })
-        
-        
-            
-        
-        
-        
     }
     
-    func getUserDetails(userID: String, controllerCompletionHandler : @escaping (_ result : AnyObject?, _ errorMessage : String) -> Void){
+    func getUserDetails(userID: String, olddata : [String: Any], controllerCompletionHandler : @escaping (_ result : AnyObject?, _ errorMessage : String?) -> Void){
         
         
         let url = UdacityClient.Constants.BaseURL
@@ -126,7 +120,7 @@ extension UdacityClient {
             }
             
             guard let ndata = data else {
-                controllerCompletionHandler(nil, "Oops looks like we asked for data but didnt get any. Such is life sometimes just have to try again." )
+                controllerCompletionHandler(nil, "Oops looks like we asked for user data but didnt get any. Such is life sometimes just have to try again." )
                 return
             }
             
@@ -135,7 +129,7 @@ extension UdacityClient {
                 parsedResult = try JSONSerialization.jsonObject(with: ndata as! Data, options: .allowFragments) as AnyObject
                 
             } catch {
-                print("Could not parse Json")
+                print("Could not parse User Data Json")
                 controllerCompletionHandler(nil, "Could not parse Json" )
                 
                 return
@@ -143,19 +137,72 @@ extension UdacityClient {
             
            
             let newdata = parsedResult[JSONResponseKeys.User] as! [String: AnyObject]
-            let ddata : [String: Any] = [
-                JSONResponseKeys.FirstName : newdata[JSONResponseKeys.FirstName] as! String,
-                JSONResponseKeys.LastName : newdata[JSONResponseKeys.LastName] as! String
-            ]
-            print(ddata)
-            controllerCompletionHandler(ddata as AnyObject, "")
+            var ddata = olddata
+            ddata[Consts.first_name]  = newdata[JSONResponseKeys.FirstName] as! String
+            ddata[Consts.last_name] = newdata[JSONResponseKeys.LastName] as! String
+            
+            ParseClient.sharedInstance().getLocation(uniqueKey: ddata[Consts.user_id] as! String, olddata: ddata as [String : AnyObject], controllerCompletionHandler: controllerCompletionHandler)
+            //controllerCompletionHandler(ddata as AnyObject, nil)
+
+        })
+   
+    }
+    
+    func removeSession(sessionID: String,  controllerCompletionHandler : @escaping (_ result : AnyObject?, _ errorMessage : String) -> Void){
+        
+        
+        var xsrfCookie: HTTPCookie? = nil
+        let sharedCookieStorage = HTTPCookieStorage.shared
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        
+        var httpHeaders : [String:String] = [
+            UdacityClient.HeaderFields.Accept : UdacityClient.HeaderValues.ContentTypeJSON,
+            UdacityClient.HeaderFields.ContentType : UdacityClient.HeaderValues.ContentTypeJSON
+        ]
+        
+        if let xsrfCookie = xsrfCookie {
+            httpHeaders[HeaderFields.XSRFToken] = xsrfCookie.value
+            
+        }
+        
+        let url = UdacityClient.Constants.BaseURL
+        let httpMethod = "DELETE"
+        
+        
+        let _ = taskMethod(url, httpMethod: httpMethod, method: UdacityClient.Constants.SessionMethod, httpHeaders: httpHeaders, completionHandler: { (data, error) in
+            
+            
+            guard error == nil else{
+                print("errr")
+                controllerCompletionHandler(nil, error!.localizedDescription)
+                return
+            }
+            
+            guard let ndata = data else {
+                controllerCompletionHandler(nil, "Oops looks like we asked for a session id but didnt get any. Such is life sometimes just have to try again." )
+                return
+            }
+            
+            let parsedResult : AnyObject!
+            do {
+                parsedResult = try JSONSerialization.jsonObject(with: ndata as! Data, options: .allowFragments) as AnyObject
+                
+            } catch {
+                print("Could not parse logout Json")
+                controllerCompletionHandler(nil, "Could not parse logout Json" )
+                
+                return
+            }
+            
+            print(parsedResult)
+            
+            
+            controllerCompletionHandler(parsedResult as AnyObject, "")
             
             
         })
-        
-        
-        
-        
     }
     
 }

@@ -39,6 +39,7 @@ extension UdacityClient {
         
         static let Accept = "Accept"
         static let ContentType = "Content-Type"
+        static let XSRFToken = "X-XSRF-TOKEN"
         
     }
     

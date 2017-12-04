@@ -45,7 +45,8 @@ class ParseClient : NSObject {
             // print(String(data: data!, encoding: .utf8)!)
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                sendError("Not 200")
+                print((response as? HTTPURLResponse))
+                sendError("NOT 200")
                 return
             }
             
