@@ -36,11 +36,8 @@ class LoginViewController: UIViewController {
                         let ndata = data as! [String : Any]
                         print("DATA")
                         print(ndata)
-                        self.delegate.session_id = ndata[Consts.session_id] as? String
                         self.delegate.user_id = ndata[Consts.user_id] as? String
-                        self.delegate.first_name = ndata[Consts.first_name] as? String
-                        self.delegate.last_name = ndata[Consts.last_name] as? String
-                        self.delegate.studentPostObbjectId = ndata[Consts.object_id] as? String
+                        self.delegate.userInfo = ndata[Consts.info] as? StudentInformation
                         self.completeLogin()
                     }
                     self.setUIEnabled(true)
@@ -70,16 +67,16 @@ class LoginViewController: UIViewController {
         
     }
     
-    func updateStudents(){
-        let parseCli = ParseClient.sharedInstance()
-        parseCli.getLocations { (data, error) in
-            if let data = data {
-                self.delegate.students = data
-            } else {
-                alert(title: "Oops", message: error ?? "Something went wrong", controller: self)
-            }
-        }
-    }
+//    func updateStudents(){
+//        let parseCli = ParseClient.sharedInstance()
+//        parseCli.getLocations { (data, error) in
+//            if let data = data {
+//                StudentInformation.studentLocations = data
+//            } else {
+//                alert(title: "Oops", message: error ?? "Something went wrong", controller: self)
+//            }
+//        }
+//    }
     
     @IBAction func signUp(_ sender : Any) {
         let app = UIApplication.shared

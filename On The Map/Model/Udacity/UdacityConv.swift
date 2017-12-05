@@ -32,7 +32,10 @@ extension UdacityClient {
             
             
             guard error == nil else{
-                print("errr")
+                if error?.code == 200{
+                    controllerCompletionHandler(nil, "Could not log in with the credentials provided. Please check and try again.")
+                    return
+                }
                 controllerCompletionHandler(nil, error!.localizedDescription)
                 return
             }
@@ -49,20 +52,18 @@ extension UdacityClient {
             } catch {
                 print("Could not parse session Json")
                 controllerCompletionHandler(nil, "Could not parse Json" )
-
                 return
             }
             
             guard let account = parsedResult[UdacityClient.JSONResponseKeys.Account] as? [String:AnyObject] else {
                 print("Could not retrieve account")
-                controllerCompletionHandler(nil, "Could not retrieve account" )
-
+                controllerCompletionHandler(nil, "Could not retrieve account." )
                 return
             }
             
             guard let account_key = account[UdacityClient.JSONResponseKeys.Account_Key] as? String else {
                 print("Could not retrieve account key")
-                controllerCompletionHandler(nil, "Could not retrieve retrieve account key" )
+                controllerCompletionHandler(nil, "Could not retrieve retrieve account key." )
 
                 return
             }
@@ -70,14 +71,14 @@ extension UdacityClient {
             UdacityClient.sharedInstance().userKey = account_key
             
             guard let session = parsedResult![UdacityClient.JSONResponseKeys.Session] as? [String:AnyObject] else {
-                print("Could not retrieve session")
-                controllerCompletionHandler(nil, "Could not retrieve session" )
+                print("Could not retrieve session.")
+                controllerCompletionHandler(nil, "Could not retrieve session." )
                 return
             }
             
             guard let sess_id = session[UdacityClient.JSONResponseKeys.Session_ID] as? String else {
                 print("Could not retrieve session id")
-                controllerCompletionHandler(nil, "Could not retrieve  session id" )
+                controllerCompletionHandler(nil, "Could not retrieve  session id." )
 
                 return
             }
@@ -115,6 +116,7 @@ extension UdacityClient {
             
             guard error == nil else{
                 print("errr")
+                
                 controllerCompletionHandler(nil, error!.localizedDescription)
                 return
             }
@@ -148,7 +150,7 @@ extension UdacityClient {
    
     }
     
-    func removeSession(sessionID: String,  controllerCompletionHandler : @escaping (_ result : AnyObject?, _ errorMessage : String) -> Void){
+    func removeSession(controllerCompletionHandler : @escaping (_ result : AnyObject?, _ errorMessage : String) -> Void){
         
         
         var xsrfCookie: HTTPCookie? = nil

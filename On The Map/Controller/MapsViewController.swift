@@ -36,7 +36,7 @@ class MapsViewController: UIViewController {
     func addPins(){
         var annotations = [MKPointAnnotation]()
         
-        for student in delegate.students {
+        for student in StudentInformation.studentLocations {
             
             // The lat and long are used to create a CLLocationCoordinates2D instance.
             let coordinate = CLLocationCoordinate2D(latitude: Double(student.lat), longitude: Double(student.lng))
@@ -45,7 +45,7 @@ class MapsViewController: UIViewController {
             // Here we create the annotation and set its coordiate, title, and subtitle properties
             let annotation = MKPointAnnotation()
             annotation.coordinate = coordinate
-            annotation.title = "\(student.firstName) \(student.lastName)"
+            annotation.title = "\(student.firstName!) \(student.lastName!)"
             annotation.subtitle = student.mediaURL
             
             // Finally we place the annotation in an array of annotations.

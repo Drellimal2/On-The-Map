@@ -24,7 +24,10 @@ extension ParseClient {
         let _ = taskMethod(urlString, httpMethod: httpMethod, httpHeaders: [:], httpBody: "", completionHandler: { (data, error) in
             
             
-           
+            guard error == nil else{
+                controllerCompletionHandler(nil, error?.localizedDescription )
+                return
+            }
             
             guard let result = data![JSONResponseKeys.Results] as? [[String:AnyObject]]  else {
                 print("Could not retrieve results")
@@ -51,6 +54,11 @@ extension ParseClient {
         
         let _ = taskMethod(urlString, httpMethod: httpMethod, httpHeaders: [:], httpBody: "", completionHandler: { (data, error) in
             
+            guard error == nil else{
+                controllerCompletionHandler(nil, error?.localizedDescription )
+                return
+            }
+            
             guard let result = (data)![JSONResponseKeys.Results] as? [[String:AnyObject]]  else {
                 print("Could not retrieve previously posted location")
                 controllerCompletionHandler(nil, "Could not retrieve previously posted location" )
@@ -58,10 +66,20 @@ extension ParseClient {
             }
             
             var ddata = olddata
+            var userLoc : StudentInformation
 //            let res = StudentInformation.studentsFromResults(result)
             if result.count > 0{
+                userLoc = StudentInformation.init(dictionary: result[0])
+                
                 ddata[ParseClient.JSONResponseKeys.ObjectID] = result[0][ParseClient.JSONResponseKeys.ObjectID]
+            }else{
+                userLoc = StudentInformation()
+                userLoc.firstName = ddata[Consts.first_name] as! String
+                userLoc.lastName = ddata[Consts.first_name] as! String
+                userLoc.uniqueKey = ddata[Consts.user_id] as! String
+                
             }
+            ddata[Consts.info] = userLoc as AnyObject
             controllerCompletionHandler(ddata as AnyObject, nil)
             
         })

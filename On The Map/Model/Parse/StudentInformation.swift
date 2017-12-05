@@ -8,14 +8,21 @@
 
 struct StudentInformation {
     
-    let objectId : String
-    let uniqueKey : String
-    let firstName : String
-    let lastName : String
-    let mapString : String
-    let mediaURL : String
-    let lat : Double
-    let lng : Double
+    var objectId : String!
+    var uniqueKey : String!
+    var firstName : String!
+    var lastName : String!
+    var mapString : String!
+    var mediaURL : String!
+    var lat : Double!
+    var lng : Double!
+    
+    
+    static var studentLocations = [StudentInformation]()
+    
+    init() {
+        // Default Initializer
+    }
     
     init(dictionary: [String:Any]) {
         objectId = dictionary[ParseClient.JSONResponseKeys.ObjectID] as! String

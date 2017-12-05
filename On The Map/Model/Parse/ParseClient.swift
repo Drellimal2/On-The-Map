@@ -39,13 +39,11 @@ class ParseClient : NSObject {
                 completionHandler(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
             }
             guard (error == nil) else { // Handle error…
-                sendError("There was an error with your request: \(error!)")
+                sendError("There was an error with your request: \(error!.localizedDescription)")
                 return
             }
-            // print(String(data: data!, encoding: .utf8)!)
             
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                print((response as? HTTPURLResponse))
                 sendError("NOT 200")
                 return
             }

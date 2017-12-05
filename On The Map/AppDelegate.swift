@@ -12,12 +12,9 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var session_id : String?
+    
     var user_id : String?
-    var first_name : String?
-    var last_name : String?
-    var students : [StudentInformation] = []
-    var studentPostObbjectId : String?
+    var userInfo : StudentInformation? // Current User Info (Name, Object Id etc.)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         

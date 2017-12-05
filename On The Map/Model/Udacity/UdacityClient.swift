@@ -34,24 +34,22 @@ class UdacityClient : NSObject{
         
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
-            func sendError(_ error: String) {
+            func sendError(_ error: String, code : Int = 1) {
                 let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandler(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+                completionHandler(nil, NSError(domain: "taskForGETMethod", code: code, userInfo: userInfo))
             }
             guard (error == nil) else { // Handle error…
-                sendError("There was an error with your request: \(error!)")
+                sendError("There was an error with your request: \(String(describing: error!.localizedDescription))")
                 return
             }
-//            print(String(data: data!, encoding: .utf8)!)
-            
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                sendError("No go with the info, try again. Looking for 200 to continue.")
+                sendError("Not 200", code: 200)
                 return
             }
             
             /* GUARD: Was there any data returned? */
             guard let data = data else {
-                sendError("Hmmmn we received NO DATA!!!! Only panic a little and try again.")
+                sendError("No Data was reecieved from the request. Please try again.")
 
                 return
             }

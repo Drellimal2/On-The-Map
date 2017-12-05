@@ -153,7 +153,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="DwM-DK-2p0">
-                                <rect key="frame" x="187.5" y="333.5" width="0.0" height="0.0"/>
+                                <rect key="frame" x="188" y="334" width="0.0" height="0.0"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="3dd-g7-B6r"/>
@@ -172,7 +172,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleAspectFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="jse-0g-piF">
-                                                    <rect key="frame" x="8" y="8" width="359" height="45"/>
+                                                    <rect key="frame" x="8" y="8" width="347" height="45"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_pin" translatesAutoresizingMaskIntoConstraints="NO" id="4Gi-qc-4jQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="75" height="45"/>
@@ -182,7 +182,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAD-ar-8Cd">
-                                                            <rect key="frame" x="87" y="0.0" width="272" height="45"/>
+                                                            <rect key="frame" x="87" y="0.0" width="260" height="45"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -193,7 +193,7 @@
                                             <constraints>
                                                 <constraint firstItem="jse-0g-piF" firstAttribute="leading" secondItem="BQl-vi-VDz" secondAttribute="leading" constant="8" id="Bxh-8k-46N"/>
                                                 <constraint firstItem="jse-0g-piF" firstAttribute="top" secondItem="BQl-vi-VDz" secondAttribute="top" constant="8" id="qEj-3E-4D4"/>
-                                                <constraint firstAttribute="trailing" secondItem="jse-0g-piF" secondAttribute="trailing" constant="8" id="vDP-hu-eRg"/>
+                                                <constraint firstAttribute="trailing" secondItem="jse-0g-piF" secondAttribute="trailing" constant="20" symbolic="YES" id="vDP-hu-eRg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -205,13 +205,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DOk-Le-9OZ" firstAttribute="top" secondItem="MNP-wH-cjS" secondAttribute="bottom" constant="-554" id="0Pa-Zi-kao"/>
+                            <constraint firstItem="DOk-Le-9OZ" firstAttribute="top" secondItem="MNP-wH-cjS" secondAttribute="top" id="1fc-y5-Eny"/>
+                            <constraint firstItem="DOk-Le-9OZ" firstAttribute="leading" secondItem="MNP-wH-cjS" secondAttribute="leading" id="4re-AV-rCo"/>
                             <constraint firstItem="DOk-Le-9OZ" firstAttribute="width" secondItem="MNP-wH-cjS" secondAttribute="width" id="4wo-gm-N8Z"/>
-                            <constraint firstItem="DwM-DK-2p0" firstAttribute="centerY" secondItem="fce-lg-sZd" secondAttribute="centerY" id="9nW-9Y-FXc"/>
-                            <constraint firstItem="DwM-DK-2p0" firstAttribute="centerX" secondItem="DOk-Le-9OZ" secondAttribute="centerX" id="Bi0-XB-lMM"/>
-                            <constraint firstItem="DOk-Le-9OZ" firstAttribute="leading" secondItem="MNP-wH-cjS" secondAttribute="trailing" constant="-375" id="Ib9-yB-A0a"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DOk-Le-9OZ" secondAttribute="trailing" id="XMI-tM-P0n"/>
-                            <constraint firstItem="DOk-Le-9OZ" firstAttribute="height" secondItem="MNP-wH-cjS" secondAttribute="height" id="gE5-pd-wJ5"/>
+                            <constraint firstItem="DOk-Le-9OZ" firstAttribute="bottom" secondItem="MNP-wH-cjS" secondAttribute="bottom" id="DjT-eF-G8r"/>
+                            <constraint firstItem="DwM-DK-2p0" firstAttribute="centerY" secondItem="fce-lg-sZd" secondAttribute="centerY" id="Fy4-Om-83C"/>
+                            <constraint firstItem="DwM-DK-2p0" firstAttribute="centerX" secondItem="DOk-Le-9OZ" secondAttribute="centerX" id="c0Z-ds-DVW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MNP-wH-cjS"/>
                     </view>
@@ -263,7 +262,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5wx-YH-uhf">
-                                <rect key="frame" x="8" y="72" width="359" height="587"/>
+                                <rect key="frame" x="8" y="28" width="359" height="631"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="ydi-0S-eTK">
                                         <rect key="frame" x="0.0" y="0.0" width="359" height="71"/>
@@ -297,18 +296,33 @@
                                         </subviews>
                                     </stackView>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="MGu-Ht-nvQ">
-                                        <rect key="frame" x="0.0" y="79" width="359" height="470"/>
+                                        <rect key="frame" x="0.0" y="79" width="359" height="514"/>
                                     </mapView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxZ-dh-spX">
-                                        <rect key="frame" x="0.0" y="557" width="359" height="30"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="Submit">
-                                            <color key="titleColor" red="0.1202256944" green="0.72881401909999999" blue="0.91606987849999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="submitLocation:" destination="bVw-z3-emf" eventType="touchUpInside" id="xJj-io-5PF"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ijm-3R-rVQ">
+                                        <rect key="frame" x="0.0" y="601" width="359" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bxZ-dh-spX">
+                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="30"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <state key="normal" title="Submit">
+                                                    <color key="titleColor" red="0.1202256944" green="0.72881401909999999" blue="0.91606987849999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="submitLocation:" destination="bVw-z3-emf" eventType="touchUpInside" id="xJj-io-5PF"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsF-DE-BK1">
+                                                <rect key="frame" x="187.5" y="0.0" width="171.5" height="30"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="Cancel">
+                                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancel:" destination="bVw-z3-emf" eventType="touchUpInside" id="GmN-QS-REe"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="MGu-Ht-nvQ" firstAttribute="leading" secondItem="5wx-YH-uhf" secondAttribute="leading" id="mg5-vd-C5m"/>
@@ -355,7 +369,7 @@
                             <barButtonItem image="icon_pin" id="mMT-Vd-6ef">
                                 <connections>
                                     <action selector="newPin:" destination="VWn-ZH-W5a" id="eIy-1l-jrE"/>
-                                    <segue destination="bVw-z3-emf" kind="show" id="ma1-bh-XAL"/>
+                                    <segue destination="bVw-z3-emf" kind="presentation" id="ma1-bh-XAL"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

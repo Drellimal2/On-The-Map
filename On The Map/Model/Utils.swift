@@ -53,15 +53,13 @@ struct Consts {
     
     static let session_id = "session_id"
     static let user_id = "user_id"
-    static let first_name = "first_name"
-    static let last_name = "last_name"
-    static let object_id = "objectId"
-
+    static let info = "info"
+    static let first_name = "fname"
+    static let last_name = "lname"
     
     static let grey_color = UIColor(red: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha: 0.5)
     
     static let enabled_blue = UIColor(red: 115.0/255.0, green: 200.0/255.0, blue: 252.0/255.0, alpha: 1.0)
-    
     
     static let udacity_sign_up_url = "https://auth.udacity.com/sign-up"
     

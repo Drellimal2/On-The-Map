@@ -34,9 +34,9 @@ class NewLocationViewController: UIViewController {
         setUIEnabled(false)
         var update = false
         var objectId : String = ""
-        if let _ = delegate.studentPostObbjectId {
+        if let _ = delegate.userInfo?.objectId {
             update = true
-            objectId = delegate.studentPostObbjectId!
+            objectId = (delegate.userInfo?.objectId)!
         }
         parseCli.addLocation(body: getDetails(), update:update,objectid: objectId, controllerCompletionHandler: {
             data,error in
@@ -49,7 +49,7 @@ class NewLocationViewController: UIViewController {
                 }
                  else {
                     if !update{
-                        self.delegate.studentPostObbjectId = ((data as! [String:AnyObject])[ParseClient.JSONResponseKeys.ObjectID] as! String)
+                        self.delegate.userInfo?.objectId = ((data as! [String:AnyObject])[ParseClient.JSONResponseKeys.ObjectID] as! String)
                     }
                     _ = self.navigationController?.popViewController(animated: true)
                 }
@@ -60,6 +60,10 @@ class NewLocationViewController: UIViewController {
         })
         
         print(getDetails())
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func locate(_ sender: Any){
@@ -80,8 +84,10 @@ class NewLocationViewController: UIViewController {
             
             guard error == nil else{
                 self.setUIEnabled(true)
+                alert(title: "Error trying to find place.", message: "Could not find any places matching \(self.locationTextField.text!)", controller: self)
                 return
             }
+            
             guard let data = data, data.mapItems.count >= 1 else {
                 
                 alert(title: "Error trying to find place.", message: "Could not find any places matching \(self.locationTextField.text!)", controller: self)
@@ -132,8 +138,8 @@ extension NewLocationViewController {
     func getDetails() -> [String:AnyObject]{
         
         let data = [
-            ParseClient.JSONParamKeys.FirstName : delegate.first_name as AnyObject,
-            ParseClient.JSONParamKeys.LastName : delegate.last_name as AnyObject,
+            ParseClient.JSONParamKeys.FirstName : delegate.userInfo?.firstName as AnyObject,
+            ParseClient.JSONParamKeys.LastName : delegate.userInfo?.lastName as AnyObject,
             ParseClient.JSONParamKeys.MediaURL : linkTextField.text as AnyObject,
             ParseClient.JSONParamKeys.UniqueKey : delegate.user_id as AnyObject,
             ParseClient.JSONParamKeys.MapString : locationTextField.text as AnyObject,
@@ -148,32 +154,18 @@ extension NewLocationViewController {
     }
     
     func setUIEnabled(_ enabled: Bool) {
-        locateButton.isEnabled = enabled
-        locationTextField.isEnabled = enabled
-        linkTextField.isEnabled = enabled
-        submitBtn.isEnabled = enabled
+        // The code seemed repetitive and in the docs I found they all inherit from UIControl which is how they have the isEnabled. Using UI view it did not work
+        let els : [UIControl] = [locateButton, locationTextField, linkTextField, submitBtn]
         
-        if enabled {
-            locateButton.alpha = 1.0
-            locationTextField.alpha = 1.0
-            linkTextField.alpha = 1.0
-            if ((locationTextField.text != nil || mapView.annotations.count > 0) && linkTextField.text != nil){
-                submitBtn.isEnabled = true
-                submitBtn.alpha = 1.0
-
+        for el in els{
+            el.isEnabled = enabled
+            if enabled {
+                el.alpha = 1.0
             } else {
-                submitBtn.isEnabled = false
-                submitBtn.alpha = 0.5
-
-                
+                el.alpha = 0.5
             }
-        } else {
-            locateButton.alpha = 0.5
-            submitBtn.alpha = 0.5
-            locationTextField.alpha = 0.5
-            linkTextField.alpha = 0.5
-
         }
+        checkSubmit()
     }
    
     func checkSubmit(){
@@ -216,7 +208,6 @@ extension NewLocationViewController : UITextFieldDelegate {
             // Not found, so remove keyboard.
             textField.resignFirstResponder()
         }
-        // Do not add a line break
         return false
     }
     

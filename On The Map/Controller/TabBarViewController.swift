@@ -36,16 +36,13 @@ class TabBarViewController: UITabBarController {
         
         let confirmAction = UIAlertAction(title : "Ok", style: .default){ UIAlertAction in
 
-            self.udacityCli.removeSession(sessionID: self.appdelegate.session_id!, controllerCompletionHandler: {(data, error) in
+            self.udacityCli.removeSession(controllerCompletionHandler: {(data, error) in
                 
                 if let data = data {
                     print(data)
-                    self.appdelegate.first_name = nil
-                    self.appdelegate.last_name = nil
-                    self.appdelegate.session_id = nil
+                    
                     self.appdelegate.user_id = nil
-                    self.appdelegate.students = []
-                    self.appdelegate.studentPostObbjectId = nil
+                    self.appdelegate.userInfo = nil
                     performUIUpdatesOnMain{
                         self.performSegue(withIdentifier: "logoutSegue", sender: nil)
                     }
@@ -72,7 +69,7 @@ class TabBarViewController: UITabBarController {
     func update(){
         parseCli.getLocations { (data, error) in
             if let data = data {
-                self.appdelegate.students = data
+                StudentInformation.studentLocations = data
                 let selCont = self.selectedViewController
                 if selCont is MapsViewController{
                     (selCont as! MapsViewController).refresh()
@@ -82,7 +79,9 @@ class TabBarViewController: UITabBarController {
                     (selCont as! ListViewController).refresh()
                 }
             } else {
-                alert(title: "Oops", message: error ?? "Something went wrong", controller: self)
+                performUIUpdatesOnMain {
+                    alert(title: "Oops", message: error ?? "Something went wrong", controller: self.selectedViewController!)
+                }
             }
         }
     }
