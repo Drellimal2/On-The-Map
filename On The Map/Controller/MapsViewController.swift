@@ -91,17 +91,17 @@ extension MapsViewController : MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                app.open(NSURL(string: toOpen)! as URL)
+                if validLink(toOpen){
+                    app.open(NSURL(string: toOpen)! as URL)
+                    
+                } else {
+                    alert(title: "Invalid Link", message: "The media link attched is not a valid link and thus cannot be opened.", controller: self)
+                }
+                
             }
         }
     }
     
-    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 
-        if control == annotationView.rightCalloutAccessoryView {
-            let app = UIApplication.shared
-            app.open(NSURL(string: annotationView.annotation!.subtitle!!)! as URL)
-        }
-    }
     
 }

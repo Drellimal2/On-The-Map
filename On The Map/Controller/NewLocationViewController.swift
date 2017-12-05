@@ -17,6 +17,8 @@ class NewLocationViewController: UIViewController {
     @IBOutlet weak var linkTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var submitBtn: UIButton!
+    var actInd = MyActInd.sharedInstance()
+
     
     var aspectRatio : Double = 1.0
     let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -42,7 +44,7 @@ class NewLocationViewController: UIViewController {
             data,error in
             performUIUpdatesOnMain {
                 self.setUIEnabled(true)
-
+                self.actInd.hide()
                 if let error = error {
                     self.showError(errorString: error)
                     return
@@ -51,7 +53,7 @@ class NewLocationViewController: UIViewController {
                     if !update{
                         self.delegate.userInfo?.objectId = ((data as! [String:AnyObject])[ParseClient.JSONResponseKeys.ObjectID] as! String)
                     }
-                    _ = self.navigationController?.popViewController(animated: true)
+                    self.dismiss(animated: true, completion: nil)
                 }
                 
             }
@@ -94,6 +96,7 @@ class NewLocationViewController: UIViewController {
                 print("ehh")
                 self.setUIEnabled(true)
 
+
                 return
             }
             let placemark = data.mapItems[0].placemark
@@ -109,6 +112,7 @@ class NewLocationViewController: UIViewController {
                 alert(title: "Error trying to find place.", message: "Could not find any places matching \(self.locationTextField.text!)", controller: self)
                 
                 self.setUIEnabled(true)
+
 
                 return
             }
@@ -156,10 +160,15 @@ extension NewLocationViewController {
     func setUIEnabled(_ enabled: Bool) {
         // The code seemed repetitive and in the docs I found they all inherit from UIControl which is how they have the isEnabled. Using UI view it did not work
         let els : [UIControl] = [locateButton, locationTextField, linkTextField, submitBtn]
-        
+        if enabled {
+            self.actInd.hide()
+        } else {
+            self.actInd.show(self.view)
+        }
         for el in els{
             el.isEnabled = enabled
             if enabled {
+                
                 el.alpha = 1.0
             } else {
                 el.alpha = 0.5

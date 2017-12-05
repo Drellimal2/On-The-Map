@@ -13,6 +13,8 @@ class TabBarViewController: UITabBarController {
     @IBOutlet weak var newPinButton: UIBarButtonItem!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     
+    let actInd = MyActInd.sharedInstance()
+    
     let parseCli = ParseClient.sharedInstance()
     
     let udacityCli = UdacityClient.sharedInstance()
@@ -37,14 +39,13 @@ class TabBarViewController: UITabBarController {
         let confirmAction = UIAlertAction(title : "Ok", style: .default){ UIAlertAction in
 
             self.udacityCli.removeSession(controllerCompletionHandler: {(data, error) in
-                
                 if let data = data {
                     print(data)
                     
                     self.appdelegate.user_id = nil
                     self.appdelegate.userInfo = nil
                     performUIUpdatesOnMain{
-                        self.performSegue(withIdentifier: "logoutSegue", sender: nil)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 } else {
                     
@@ -100,6 +101,11 @@ extension TabBarViewController {
         logoutButton.isEnabled = enabled
         newPinButton.isEnabled = enabled
         refreshButton.isEnabled = enabled
+        if enabled{
+            actInd.hide()
+        } else {
+            actInd.show((self.selectedViewController?.view)!)
+        }
         
     }
     

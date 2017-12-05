@@ -51,10 +51,13 @@ extension ListViewController : UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        tableView.deselectRow(at: indexPath, animated: true)
         let student = StudentInformation.studentLocations[(indexPath as NSIndexPath).row]
-        UIApplication.shared.open(NSURL(string: student.mediaURL)! as URL)
-        // navigationController?.pushViewController(vc, animated: true)
+        if validLink(student.mediaURL){
+            UIApplication.shared.open(NSURL(string: student.mediaURL)! as URL)
+        } else {
+            alert(title: "Invalid Link", message: "The media link attched is not a valid link and thus cannot be opened.", controller: self)
+        }
     }
     
     

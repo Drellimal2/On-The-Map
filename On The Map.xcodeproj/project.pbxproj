@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		352584D91FA9FF15003A0A88 /* UIViewContr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352584D81FA9FF15003A0A88 /* UIViewContr.swift */; };
+		353EE2FB1FD7128000124246 /* MyActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353EE2FA1FD7128000124246 /* MyActivityIndicator.swift */; };
 		354C5ABD1FA6ACD1002B17B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354C5ABC1FA6ACD1002B17B4 /* AppDelegate.swift */; };
 		354C5AC21FA6ACD1002B17B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354C5AC01FA6ACD1002B17B4 /* Main.storyboard */; };
 		354C5AC41FA6ACD1002B17B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354C5AC31FA6ACD1002B17B4 /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		352584D81FA9FF15003A0A88 /* UIViewContr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewContr.swift; sourceTree = "<group>"; };
+		353EE2FA1FD7128000124246 /* MyActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyActivityIndicator.swift; sourceTree = "<group>"; };
 		354C5AB91FA6ACD1002B17B4 /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		354C5ABC1FA6ACD1002B17B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		354C5AC11FA6ACD1002B17B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				354C5AE91FA77504002B17B4 /* StudentTableViewCell.swift */,
 				352584D81FA9FF15003A0A88 /* UIViewContr.swift */,
+				353EE2FA1FD7128000124246 /* MyActivityIndicator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				352584D91FA9FF15003A0A88 /* UIViewContr.swift in Sources */,
 				354C5AD51FA6AD5E002B17B4 /* LoginViewController.swift in Sources */,
 				354C5AEE1FA775E4002B17B4 /* ListViewController.swift in Sources */,
+				353EE2FB1FD7128000124246 /* MyActivityIndicator.swift in Sources */,
 				354C5AE31FA6E50E002B17B4 /* UdacityConv.swift in Sources */,
 				354C5AE11FA6DB0F002B17B4 /* UdacityConstants.swift in Sources */,
 				354C5AE51FA6EEF8002B17B4 /* Utils.swift in Sources */,

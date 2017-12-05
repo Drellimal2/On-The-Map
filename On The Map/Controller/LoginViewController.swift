@@ -15,8 +15,9 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var errorTextView: UITextView!
     @IBOutlet weak var loginButton: UIButton!
     
+    
     let delegate = UIApplication.shared.delegate as! AppDelegate
-
+    var actInd = MyActInd.sharedInstance()
     
     let UdacityCli = UdacityClient.sharedInstance()
     var usernameText  = ""
@@ -24,6 +25,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginUdacity(_ sender: Any) {
         guard ( emailTextField.text!.isEmpty || emailTextField.text!.isEmpty )  else {
+            actInd.show(self.view)
             setUIEnabled(false)
             usernameText = emailTextField.text!
             passwordText = passwordTextField.text!
@@ -41,6 +43,7 @@ class LoginViewController: UIViewController {
                         self.completeLogin()
                     }
                     self.setUIEnabled(true)
+                    self.actInd.hide()
 
                 }
             })
@@ -50,33 +53,16 @@ class LoginViewController: UIViewController {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-
     
     private func completeLogin(){
         
         errorTextView.text = ""
         let controller = storyboard!.instantiateViewController(withIdentifier: "MapsNavigationController") as! UINavigationController
-        //updateStudents()
         
         present(controller, animated: true, completion: nil)
         
         
     }
-    
-//    func updateStudents(){
-//        let parseCli = ParseClient.sharedInstance()
-//        parseCli.getLocations { (data, error) in
-//            if let data = data {
-//                StudentInformation.studentLocations = data
-//            } else {
-//                alert(title: "Oops", message: error ?? "Something went wrong", controller: self)
-//            }
-//        }
-//    }
     
     @IBAction func signUp(_ sender : Any) {
         let app = UIApplication.shared
@@ -96,7 +82,6 @@ extension LoginViewController {
         } else {
             loginButton.alpha = 0.5
             errorTextView.text = ""
-
         }
     }
     

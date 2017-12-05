@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreGraphics
 
 extension UIViewController
 {
@@ -15,4 +16,7 @@ extension UIViewController
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true) //This will hide the keyboard
     }
+    
+    
+    
 }
